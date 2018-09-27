@@ -1,1 +1,1 @@
-# genie-iot
+# genie-iot-cli
