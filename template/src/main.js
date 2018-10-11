@@ -3,11 +3,11 @@
 import 'ai-sdk'
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { Autocomplete, Switch, Button, ButtonGroup, Radio, RadioGroup, RadioButton, Slider, Checkbox, CheckboxButton, CheckboxGroup, MessageBox, Message, Progress } from 'element-ui'
+import { Autocomplete, Switch, Button, ButtonGroup, Radio, RadioGroup, RadioButton, Slider, Checkbox, CheckboxButton, CheckboxGroup, MessageBox, Message, Progress } from 'genie-ui'
 import App from './App'
 import router from './router'
 import store from './store'
-import 'element-ui/lib/theme-chalk/index.css'
+import 'genie-ui/lib/theme-chalk/index.css'
 import './element-variables.scss'
 
 Vue.prototype.$ELEMENT = { size: 'small', zIndex: 3000 }
