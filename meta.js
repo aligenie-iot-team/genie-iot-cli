@@ -19,7 +19,7 @@ module.exports = {
     before: addTestAnswers
   },
   helpers: {
-    if_or (v1, v2, options) {
+    if_or(v1, v2, options) {
 
       if (v1 || v2) {
         return options.fn(this)
@@ -27,7 +27,7 @@ module.exports = {
 
       return options.inverse(this)
     },
-    template_version () {
+    template_version() {
       return templateVersion
     },
   },
@@ -50,6 +50,23 @@ module.exports = {
       when: 'isNotTest',
       type: 'string',
       message: 'Author',
+    },
+    component: {
+      when: 'isNotTest',
+      type: 'list',
+      message: 'Select the component library to use.',
+      choices: [
+        {
+          name: 'use genie ui',
+          value: 'genie',
+          short: 'genie',
+        },
+        {
+          name: 'use tunas',
+          value: 'tunas',
+          short: 'tunas',
+        }
+      ],
     },
     autoInstall: {
       when: 'isNotTest',
@@ -78,9 +95,11 @@ module.exports = {
           short: 'yarn',
         }
       ],
-    },
+    }
   },
   filters: {
+    'src/element-variables.scss': "component === 'genie'",
+    'src/page/**/*': "component === 'genie'",
   },
   complete: function (data, { chalk }) {
     const green = chalk.green
