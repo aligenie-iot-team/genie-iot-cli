@@ -3,7 +3,7 @@
     <div class="switch-warp">
       <div class="switch-box">
         <div class="switch-title">开关</div>
-        <el-switch v-model="value1" @change="switchChange"></el-switch>
+        <el-switch v-model="value"></el-switch>
       </div>
     </div>
   </div>
@@ -11,14 +11,20 @@
 
 <script type="text/ecmascript-6">
 export default {
-  data () {
+  data() {
     return {
-      value1: true
     }
   },
-  methods: {
-    switchChange (val) {
-      console.log(val)
+  computed: {
+    value: {
+      get: function () {
+        const { attr } = this.$store.state
+        const { Switch } = attr
+        return Switch === 1
+      },
+      set: function (val) {
+        this.$store.dispatch('setDeviceStatus', { attrs: { Switch: val ? 1 : 0 } })
+      }
     }
   }
 }

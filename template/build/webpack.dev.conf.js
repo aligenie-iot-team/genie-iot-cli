@@ -9,9 +9,13 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
+const OutputComplete = require('./output-complete');
+const OpenBrowserPlugin = require('open-browser-webpack-plugin')
+
 
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
+
 
 const devWebpackConfig = merge(baseWebpackConfig, {
   module: {
@@ -42,7 +46,8 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     quiet: true, // necessary for FriendlyErrorsPlugin
     watchOptions: {
       poll: config.dev.poll,
-    }
+    },
+    disableHostCheck: true
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -67,7 +72,6 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     ])
   ]
 })
-
 module.exports = new Promise((resolve, reject) => {
   portfinder.basePort = process.env.PORT || config.dev.port
   portfinder.getPort((err, port) => {
@@ -78,18 +82,24 @@ module.exports = new Promise((resolve, reject) => {
       process.env.PORT = port
       // add port to devServer config
       devWebpackConfig.devServer.port = port
-
+      const url = `http://localhost:${port}`;
       // Add FriendlyErrorsPlugin
       devWebpackConfig.plugins.push(new FriendlyErrorsPlugin({
         compilationSuccessInfo: {
-          messages: [`Your application is running here: http://${devWebpackConfig.devServer.host}:${port}`],
+          messages: [
+            `Your application is running here: ${url}`,
+          ],
         },
         onErrors: config.dev.notifyOnErrors
-        ? utils.createNotifierCallback()
-        : undefined
+          ? utils.createNotifierCallback()
+          : undefined,
+        clearConsole: false
       }))
+      devWebpackConfig.plugins.push(new OutputComplete({ url }))
+      devWebpackConfig.plugins.push(new OpenBrowserPlugin({ url }))
 
       resolve(devWebpackConfig)
     }
   })
 })
+

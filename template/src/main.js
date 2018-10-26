@@ -9,8 +9,8 @@ import { Autocomplete, Switch, Button, ButtonGroup, Radio, RadioGroup, RadioButt
 import App from './App'
 import router from './router'
 import store from './store'
+import deviceConfig from './device-config'
 {{#if_eq component "genie"}}
-import 'genie-ui/lib/theme-chalk/index.css'
 import './element-variables.scss'
 
 Vue.prototype.$ELEMENT = { size: 'small', zIndex: 3000 }
@@ -38,6 +38,7 @@ Vue.prototype.$message = Message
 Vue.use(Vuex)
 Vue.config.productionTip = false
 
+AI.injection(deviceConfig.debug)
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
