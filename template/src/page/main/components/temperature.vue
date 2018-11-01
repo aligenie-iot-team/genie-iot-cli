@@ -3,6 +3,7 @@
     <span class="text">温州调节<b>(恒湿模式下目标湿度设置（%）)</b></span>
     <el-slider
     v-model="value"
+    @change="change"
     :min="40"
     :max="80"
     :step="5"
@@ -27,13 +28,16 @@ export default {
         return TargetHumidity
       },
       set: function (val) {
-        this.$store.dispatch('setDeviceStatus', { attrs: { TargetHumidity: val, SprayLevel: 4 } })
+        this.$store.commit('updateDeviceAttrs', { TargetHumidity: val })
       }
     }
   },
   methods: {
     formatNumerial: function (item) {
       return item.value;
+    },
+    change: function (val) {
+      this.$store.dispatch('setDeviceStatus', { attrs: { TargetHumidity: val, SprayLevel: 4 } })
     }
   }
 }
