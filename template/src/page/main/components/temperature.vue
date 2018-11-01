@@ -28,7 +28,7 @@ export default {
         return TargetHumidity
       },
       set: function (val) {
-        this.$store.commit('updateDeviceAttrs', { TargetHumidity: val })
+        this.$store.commit('updateDeviceAttr', { TargetHumidity: val })
       }
     }
   },
@@ -37,7 +37,7 @@ export default {
       return item.value;
     },
     change: function (val) {
-      this.$store.dispatch('setDeviceStatus', { attrs: { TargetHumidity: val, SprayLevel: 4 } })
+      AI.setDeviceStatus({ TargetHumidity: val, SprayLevel: 4 })
     }
   }
 }

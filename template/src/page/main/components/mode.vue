@@ -1,7 +1,7 @@
 <template>
   <div class="block">
     <span class="text">模式</span>
-    <el-radio-group v-model="value" type="grid">
+    <el-radio-group v-model="value" @change="change" type="grid">
       <el-radio-button :label="1">雾量1档</el-radio-button>
       <el-radio-button :label="2">雾量2档</el-radio-button>
       <el-radio-button :label="3">雾量3档</el-radio-button>
@@ -24,8 +24,13 @@ export default {
         return SprayLevel
       },
       set: function (val) {
-        this.$store.dispatch('setDeviceStatus', { attrs: { SprayLevel: val } })
+        this.$store.commit('updateDeviceAttr', { SprayLevel: val })
       }
+    }
+  },
+  methods: {
+    change: function (val) {
+      AI.setDeviceStatus({ SprayLevel: val })
     }
   }
 }

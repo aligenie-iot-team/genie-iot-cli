@@ -3,7 +3,7 @@
     <div class="switch-warp">
       <div class="switch-box">
         <div class="switch-title">开关</div>
-        <el-switch v-model="value"></el-switch>
+        <el-switch v-model="value" @change="change"></el-switch>
       </div>
     </div>
   </div>
@@ -23,8 +23,13 @@ export default {
         return PowerSwitch === 1
       },
       set: function (val) {
-        this.$store.dispatch('setDeviceStatus', { attrs: { PowerSwitch: val ? 1 : 0 } })
+        this.$store.commit('updateDeviceAttr', { PowerSwitch: val ? 1 : 0 })
       }
+    }
+  },
+  methods: {
+    change: function (val) {
+      AI.setDeviceStatus({ PowerSwitch: val ? 1 : 0 })
     }
   }
 }

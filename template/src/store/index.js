@@ -29,7 +29,7 @@ export default new Vuex.Store({
      * 更新状态树中的属性集合
      * @param {*} attr 要更新的属性集合
      */
-    updateDeviceAttrs(state, attr = {}) {
+    updateDeviceAttr(state, attr = {}) {
       state.attr = Object.assign({}, state.attr, attr)
     }
   },
@@ -44,19 +44,6 @@ export default new Vuex.Store({
       }, (error) => {
         console.log('deviceStatusPolling error', error)
       })
-    },
-    /**
-     * 设置设备状态  
-     * @param {*} payload  参数
-     * @param {object} payload.attrs 要更新的属性集合
-     * @param {object} payload.immediately 是否立即更新状态树种的属性集合
-     */
-    setDeviceStatus({ commit }, payload = {}) {
-      const { attrs = {}, immediately = true } = payload
-      if (immediately) {
-        commit('updateDeviceAttrs', attrs)
-      }
-      AI.setDeviceStatus({ attrs })
     }
   }
 })
