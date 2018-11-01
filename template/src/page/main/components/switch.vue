@@ -3,7 +3,7 @@
     <div class="switch-warp">
       <div class="switch-box">
         <div class="switch-title">开关</div>
-        <el-switch :value="value"></el-switch>
+        <el-switch v-model="value"></el-switch>
       </div>
     </div>
   </div>
