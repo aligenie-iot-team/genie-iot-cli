@@ -18,11 +18,11 @@ class OutputQrcode {
   apply(compiler) {
     const executeOpen = once(() => {
       setTimeout(() => {
-        const url = 'https://ju.taobao.com/m/jusp/alone/iot-bind-dev/mtp.htm#/list/';
-        qrcode.generate(url);
+        const qrcodeUrl = 'https://ju.taobao.com/m/jusp/alone/iot-bind-dev/mtp.htm#/list/';
+        qrcode.generate(qrcodeUrl);
         console.log('1. 打开天猫精灵app');
         console.log('2. 扫码获取用户身份信息AuthInfo');
-        console.log(`3. 在浏览器控制台输入localStorage.setItem('__authInfo', {...});localStorage.setItem('__isDebug', 'true')`);
+        console.log(`3. 在浏览器控制台输入localStorage.setItem('__authInfo', {...});localStorage.setItem('__isDebug', 'true'); 或者在device-config中配置authInfo和isDebug`);
         console.log(`4. 在浏览器中访问你的程序: ${this.url}`);
       }, 500);
     })

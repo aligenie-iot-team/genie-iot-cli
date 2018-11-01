@@ -1,20 +1,14 @@
 export default {
+  base: {
+    pollingInterval: 5000,
+  },
   debug: {
     params: {
-      devId: 'string',
-      productKey: 'string',
-      skillId: 'string'
+      devId: '',
+      productKey: '',
+      skillId: ''
     },
     isDebug: true,
     authInfo: {},
-    isMock: false,
-    mockConfig: {
-      mockStatus: {
-        status: 0,
-        attr: {},
-        errorInfo: {},
-        scheduleInfo: {}
-      }
-    }
   }
 }

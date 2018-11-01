@@ -8,7 +8,7 @@
 export default {
   name: 'App',
   created: function () {
-    this.$store.dispatch('getDeviceStatus')
+    this.$store.dispatch('deviceStatusPolling')
   }
 }
 </script>

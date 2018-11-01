@@ -82,7 +82,7 @@ module.exports = new Promise((resolve, reject) => {
       process.env.PORT = port
       // add port to devServer config
       devWebpackConfig.devServer.port = port
-      const url = `http://localhost:${port}`;
+      const url = `http://dev.taobao.com:${port}`;
       // Add FriendlyErrorsPlugin
       devWebpackConfig.plugins.push(new FriendlyErrorsPlugin({
         compilationSuccessInfo: {

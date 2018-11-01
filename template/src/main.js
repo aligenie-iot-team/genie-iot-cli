@@ -38,7 +38,7 @@ Vue.prototype.$message = Message
 Vue.use(Vuex)
 Vue.config.productionTip = false
 
-AI.injection(deviceConfig.debug)
+AI.injection(deviceConfig)
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

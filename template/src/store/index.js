@@ -13,10 +13,9 @@ export default new Vuex.Store({
     /**
      * 更新状态树中的设备相关状态
      * @param {object} payload.data 新的数据
-     * @param {function} payload.cb 更新后的回调，用作更新后的特殊业务逻辑处理
      */
     updateDeviceStatus(state, payload) {
-      const { data, cb } = payload
+      const { data } = payload
       const { status, attr = {}, errorInfo } = data
       if (!status) {
         console.log('error')
@@ -25,7 +24,6 @@ export default new Vuex.Store({
       state.attr = Object.assign({}, state.attr, attr)
       state.errorInfo = errorInfo || {}
       state.scheduleInfo = errorInfo || {}
-      cb && cb()
     },
     /**
      * 更新状态树中的属性集合
@@ -37,19 +35,18 @@ export default new Vuex.Store({
   },
   actions: {
     /**
-     * 获取设备状态 todo: 目前只是mock，后续根据具体情况调整逻辑
-     * @param {*} payload 参数 cb : 回调函数
+     * 获取设备状态 
      */
-    getDeviceStatus({ commit }, payload) {
-      AI.getDeviceStatus().then((data) => {
-        console.log('[getDeviceStatus]', data)
-        // commit('updateDeviceStatus', { data: data.model })
+    deviceStatusPolling({ commit }) {
+      AI.deviceStatusPolling((data) => {
+        console.log('[deviceStatusPolling]', data)
+        commit('updateDeviceStatus', { data })
       }, (error) => {
-        console.log('getDeviceStatus error', error)
+        console.log('deviceStatusPolling error', error)
       })
     },
     /**
-     * 设置设备状态  todo: 目前只是mock，后续根据具体情况调整逻辑
+     * 设置设备状态  
      * @param {*} payload  参数
      * @param {object} payload.attrs 要更新的属性集合
      * @param {object} payload.immediately 是否立即更新状态树种的属性集合
@@ -59,10 +56,7 @@ export default new Vuex.Store({
       if (immediately) {
         commit('updateDeviceAttrs', attrs)
       }
-      this.SET_TIMEOUT && clearTimeout(this.SET_TIMEOUT)
-      this.SET_TIMEOUT = setTimeout(() => {
-        AI.setDeviceStatus({ attrs })
-      }, 500)
+      AI.setDeviceStatus({ attrs })
     }
   }
 })
