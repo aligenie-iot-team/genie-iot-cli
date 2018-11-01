@@ -3,7 +3,7 @@
     <div class="title">demo</div>
     <SwitchItem />
 		<Mode v-if="PowerSwitch === 1" />
-    <Temperature v-show="SprayLevel !== 4 && PowerSwitch === 1" />
+    <Temperature v-show="SprayLevel === 4 && PowerSwitch === 1" />
   </div>
 </template>
 
