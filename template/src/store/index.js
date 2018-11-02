@@ -17,9 +17,6 @@ export default new Vuex.Store({
     updateDeviceStatus(state, payload) {
       const { data } = payload
       const { status, attr = {}, errorInfo } = data
-      if (!status) {
-        console.log('error')
-      }
       state.status = status
       state.attr = Object.assign({}, state.attr, attr)
       state.errorInfo = errorInfo || {}
