@@ -44,6 +44,17 @@ export default new Vuex.Store({
       }, (error) => {
         console.log('deviceStatusPolling error', error)
       })
+    },
+    /**
+     * 设置设备属性
+     * @param {*} attrs 需要设置的属性集合
+     */
+    setDeviceStatus({ commit }, attrs) {
+      AI.setDeviceStatus(attrs).catch((error) => {
+        if (error.checkMsg === 'set_fail') {
+          console.log('[set_fail]', error)
+        }
+      })
     }
   }
 })

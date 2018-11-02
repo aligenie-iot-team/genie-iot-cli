@@ -30,7 +30,7 @@ export default {
   },
   methods: {
     change: function (val) {
-      AI.setDeviceStatus({ SprayLevel: val })
+      this.$store.dispatch('setDeviceStatus', { SprayLevel: val })
     }
   }
 }

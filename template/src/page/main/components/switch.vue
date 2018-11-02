@@ -29,7 +29,7 @@ export default {
   },
   methods: {
     change: function (val) {
-      AI.setDeviceStatus({ PowerSwitch: val ? 1 : 0 })
+      this.$store.dispatch('setDeviceStatus', { PowerSwitch: val ? 1 : 0 })
     }
   }
 }

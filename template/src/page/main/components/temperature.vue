@@ -37,7 +37,7 @@ export default {
       return item.value;
     },
     change: function (val) {
-      AI.setDeviceStatus({ TargetHumidity: val, SprayLevel: 4 })
+      this.$store.dispatch('setDeviceStatus', { TargetHumidity: val, SprayLevel: 4 })
     }
   }
 }
