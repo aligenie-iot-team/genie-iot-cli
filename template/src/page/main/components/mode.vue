@@ -18,18 +18,18 @@ export default {
   },
   computed: {
     value: {
-      get: function () {
+      get() {
         const { attr } = this.$store.state
         const { SprayLevel } = attr
         return SprayLevel
       },
-      set: function (val) {
+      set(val) {
         this.$store.commit('updateDeviceAttr', { SprayLevel: val })
       }
     }
   },
   methods: {
-    change: function (val) {
+    change(val) {
       this.$store.dispatch('setDeviceStatus', { SprayLevel: val })
     }
   }

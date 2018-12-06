@@ -22,21 +22,21 @@ export default {
   },
   computed: {
     value: {
-      get: function () {
+      get() {
         const { attr } = this.$store.state
         const { TargetHumidity } = attr
         return TargetHumidity
       },
-      set: function (val) {
+      set(val) {
         this.$store.commit('updateDeviceAttr', { TargetHumidity: val })
       }
     }
   },
   methods: {
-    formatNumerial: function (item) {
-      return item.value;
+    formatNumerial(item) {
+      return item.value
     },
-    change: function (val) {
+    change(val) {
       this.$store.dispatch('setDeviceStatus', { TargetHumidity: val, SprayLevel: 4 })
     }
   }

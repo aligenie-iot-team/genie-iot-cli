@@ -16,11 +16,11 @@ export default new Vuex.Store({
      */
     updateDeviceStatus(state, payload) {
       const { data } = payload
-      const { status, attr = {}, errorInfo } = data
-      state.status = status
+      const { status, attr = {}, errorInfo = {}, scheduleInfo = {} } = data
+      if (status !== undefined) state.status = status
       state.attr = Object.assign({}, state.attr, attr)
-      state.errorInfo = errorInfo || {}
-      state.scheduleInfo = errorInfo || {}
+      state.errorInfo = errorInfo
+      state.scheduleInfo = scheduleInfo
     },
     /**
      * 更新状态树中的属性集合
@@ -32,14 +32,14 @@ export default new Vuex.Store({
   },
   actions: {
     /**
-     * 获取设备状态 
+     * 获取设备状态
      */
     deviceStatusPolling({ commit }) {
-      AI.deviceStatusPolling((data) => {
-        console.log('[deviceStatusPolling]', data)
-        commit('updateDeviceStatus', { data })
+      AI.deviceStatusPolling((resp) => {
+        console.log('[deviceStatusPolling]', resp)
+        commit('updateDeviceStatus', { data: resp.model })
       }, (error) => {
-        console.log('deviceStatusPolling error', error)
+        console.log('[deviceStatusPolling error]', error)
       })
     },
     /**
@@ -47,10 +47,8 @@ export default new Vuex.Store({
      * @param {*} attrs 需要设置的属性集合
      */
     setDeviceStatus({ commit }, attrs) {
-      AI.setDeviceStatus(attrs).catch((error) => {
-        if (error.checkMsg === 'set_fail') {
-          console.log('[set_fail]', error)
-        }
+      AI.setDeviceStatus(attrs).then((resp) => {
+        console.log('[setDeviceStatus]', resp)
       })
     }
   }

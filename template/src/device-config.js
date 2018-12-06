@@ -1,6 +1,9 @@
 export default {
   base: {
     pollingInterval: 5000,
+    deviceInfo: {
+      title: 'demo'
+    }
   },
   debug: {
     params: {

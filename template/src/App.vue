@@ -9,10 +9,6 @@ export default {
   name: 'App',
   created: function () {
     this.$store.dispatch('deviceStatusPolling')
-  },
-  beforeDestroy () {
-    // 销毁polling
-    AI.polling && AI.polling.stop()
   }
 }
 </script>

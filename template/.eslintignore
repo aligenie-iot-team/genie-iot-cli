@@ -3,4 +3,4 @@
 /dist/
 /*.js
 /src/device-config.js
-/src/
+/src/device-mot.js

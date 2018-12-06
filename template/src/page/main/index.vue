@@ -2,7 +2,7 @@
   <div class="main">
     <div class="title">demo</div>
     <SwitchItem />
-		<Mode v-if="PowerSwitch === 1" />
+    <Mode v-if="PowerSwitch === 1" />
     <Temperature v-show="SprayLevel === 4 && PowerSwitch === 1" />
   </div>
 </template>
@@ -13,20 +13,30 @@ import Temperature from './components/temperature.vue'
 import Mode from './components/mode.vue'
 
 export default {
-	name: 'Main',
-	components: { SwitchItem, Temperature, Mode },
-	computed: {
-		PowerSwitch: function () {
-			const { attr } = this.$store.state
-			const { PowerSwitch } = attr
-			return PowerSwitch;
-		},
-		SprayLevel: function () {
-			const { attr } = this.$store.state
-			const { SprayLevel } = attr
-			return SprayLevel
-		}
-	}
+  name: 'Main',
+  components: { SwitchItem, Temperature, Mode },
+  computed: {
+    PowerSwitch() {
+      const { attr } = this.$store.state
+      const { PowerSwitch } = attr
+      return PowerSwitch
+    },
+    SprayLevel() {
+      const { attr } = this.$store.state
+      const { SprayLevel } = attr
+      return SprayLevel
+    },
+    title() {
+      const { deviceInfo } = this.$store.state.base
+      const { title } = deviceInfo
+      return title
+    }
+  },
+  beforeRouteEnter(to, from, next) {
+    next(vm => {
+      Components.topbar.setNavbar({ center: { text: vm.title } })
+    })
+  }
 }
 </script>
 

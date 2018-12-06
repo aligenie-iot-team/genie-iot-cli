@@ -9,7 +9,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
-const OutputComplete = require('./output-complete');
+const CompleteConsole = require('complete-console');
 const OpenBrowserPlugin = require('open-browser-webpack-plugin')
 
 
@@ -95,7 +95,7 @@ module.exports = new Promise((resolve, reject) => {
           : undefined,
         clearConsole: false
       }))
-      devWebpackConfig.plugins.push(new OutputComplete({ url }))
+      devWebpackConfig.plugins.push(new CompleteConsole({ url }))
       devWebpackConfig.plugins.push(new OpenBrowserPlugin({ url }))
 
       resolve(devWebpackConfig)

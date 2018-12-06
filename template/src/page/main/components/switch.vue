@@ -17,18 +17,18 @@ export default {
   },
   computed: {
     value: {
-      get: function () {
+      get() {
         const { attr } = this.$store.state
         const { PowerSwitch } = attr
         return PowerSwitch === 1
       },
-      set: function (val) {
+      set(val) {
         this.$store.commit('updateDeviceAttr', { PowerSwitch: val ? 1 : 0 })
       }
     }
   },
   methods: {
-    change: function (val) {
+    change(val) {
       this.$store.dispatch('setDeviceStatus', { PowerSwitch: val ? 1 : 0 })
     }
   }
