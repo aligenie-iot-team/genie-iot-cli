@@ -1,31 +1,14 @@
 <template>
   <div class="main">
     <div class="title">demo</div>
-    <SwitchItem />
-    <Mode v-if="PowerSwitch === 1" />
-    <Temperature v-show="SprayLevel === 4 && PowerSwitch === 1" />
   </div>
 </template>
 
 <script type="text/ecmascript-6">
-import SwitchItem from './components/switch.vue'
-import Temperature from './components/temperature.vue'
-import Mode from './components/mode.vue'
-
 export default {
   name: 'Main',
-  components: { SwitchItem, Temperature, Mode },
+  components: {},
   computed: {
-    PowerSwitch() {
-      const { attr } = this.$store.state
-      const { PowerSwitch } = attr
-      return PowerSwitch
-    },
-    SprayLevel() {
-      const { attr } = this.$store.state
-      const { SprayLevel } = attr
-      return SprayLevel
-    },
     title() {
       const { deviceInfo } = this.$store.state.base
       const { title } = deviceInfo

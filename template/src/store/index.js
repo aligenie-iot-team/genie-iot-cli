@@ -49,6 +49,8 @@ export default new Vuex.Store({
     setDeviceStatus({ commit }, attrs) {
       AI.setDeviceStatus(attrs).then((resp) => {
         console.log('[setDeviceStatus]', resp)
+      }).catch((err) => {
+        console.log(err)
       })
     }
   }

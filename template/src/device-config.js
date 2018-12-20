@@ -1,5 +1,6 @@
 export default {
   base: {
+    env: 'dev',
     pollingInterval: 5000,
     deviceInfo: {
       title: 'demo'

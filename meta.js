@@ -51,23 +51,6 @@ module.exports = {
       type: 'string',
       message: 'Author',
     },
-    component: {
-      when: 'isNotTest',
-      type: 'list',
-      message: 'Select the component library to use.',
-      choices: [
-        {
-          name: 'use genie ui',
-          value: 'genie',
-          short: 'genie',
-        },
-        {
-          name: 'use tunas',
-          value: 'tunas',
-          short: 'tunas',
-        }
-      ],
-    },
     autoInstall: {
       when: 'isNotTest',
       type: 'list',
@@ -98,8 +81,6 @@ module.exports = {
     }
   },
   filters: {
-    'src/element-variables.scss': "component === 'genie'",
-    'src/page/**/*': "component === 'genie'",
   },
   complete: function (data, { chalk }) {
     const green = chalk.green
