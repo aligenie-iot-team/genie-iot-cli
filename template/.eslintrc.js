@@ -21,6 +21,8 @@ module.exports = {
   ],
   // add your custom rules here
   rules: {
+    'comma-dangle': 'off',
+    'semi': 'off',
     'no-undef': 'off',
     'no-tabs': 'off',
     // allow async-await
