@@ -1,7 +1,7 @@
 <template>
   <div class="main">
     <div class="deviceInfo">
-      <img :src="img" />
+      <img :src="img">
       <h5 class="title">\{{title}}</h5>
     </div>
 
@@ -11,9 +11,8 @@
     </div>
     <div class="switch" @click="control">
       <h5>开关状态</h5>
-      <switch-button :value="powerstate" ></switch-button>
+      <switch-button :value="powerstate"></switch-button>
     </div>
-
   </div>
 </template>
 
@@ -51,7 +50,7 @@ export default {
       // 开关状态
       powerstate: state => {
         const powerstate = state.publicInfo.attr.powerstate;
-        return powerstate === 'on' ? true : false;
+        return powerstate === 'on';
       }
     }),
   },
@@ -60,12 +59,12 @@ export default {
       Components.topbar.setNavbar({ center: { text: vm.title } })
     })
   },
-  created () {
+  created() {
     console.log('this.$route.query：', this.$route.query);
     this.$nextTick(() => {
       // 兼听页面改变
       AI.listenPageChange({
-        Background: () => {},
+        Background: () => { },
         Active: () => {
           this.setNavBar();
         }
@@ -89,28 +88,26 @@ export default {
         eventName: 'tapRightItem',
       }];
       var params = {
-          center: {
-            text: this.title
-          },
-          right
+        center: {
+          text: this.title
+        },
+        right
       };
-      
+
       document.removeEventListener('tapRightItem', this.tapRightItem);
-      document.addEventListener('tapRightItem', this.tapRightItem, false); 
+      document.addEventListener('tapRightItem', this.tapRightItem, false);
       window.WindVane.call('AppModel', 'setNavBar', params)
     },
 
     tapRightItem() {
-      
       // 前往设置页面
       AI.goWeexSetPage({
         pre: '2'
       });
-
     },
 
     control() {
-      if(this.onlinestate !== '在线') {
+      if (this.onlinestate !== '在线') {
         return;
       }
       this.$store.dispatch('setDeviceStatus', {
@@ -123,7 +120,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less" scoped>
-.deviceInfo{
+.deviceInfo {
   display: flex;
   height: 180px;
   margin-bottom: 10px;
@@ -131,17 +128,17 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  img{
+  img {
     height: 80px;
   }
-  .title{
+  .title {
     color: #4a4a4a;
     font-weight: bold;
     padding-top: 5px;
   }
 }
 
-.switch{
+.switch {
   display: flex;
   height: 50px;
   padding: 0 10px;
@@ -149,7 +146,7 @@ export default {
   background-color: #fff;
   align-items: center;
   justify-content: space-between;
-  h5{
+  h5 {
     color: #4a4a4a;
     font-size: 14px;
   }
