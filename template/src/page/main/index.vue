@@ -19,7 +19,7 @@
 
 <script type="text/ecmascript-6">
 import { mapState } from 'vuex'
-import { SwitchButton } from '@ali/tunas'
+import { SwitchButton } from 'genie-ui'
 
 export default {
   name: 'Main',

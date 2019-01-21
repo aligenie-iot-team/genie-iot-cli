@@ -15,8 +15,7 @@ export default {
 
 <style lang="less" >
 @import './assets/less/style.less';
-@import '@ali/tunas/build/tunas.css';
-/* @import 'genni-ui/build/tunas.css'; */
+@import 'genie-ui/build/tunas.css';
 html,
 body {
   margin: 0;
