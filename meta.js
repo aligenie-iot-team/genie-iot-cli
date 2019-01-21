@@ -63,6 +63,11 @@ module.exports = {
           short: 'no',
         },
         {
+          name: 'Yes, use CNPM',
+          value: 'cnpm',
+          short: 'cnpm',
+        },
+        {
           name: 'Yes, use TNPM',
           value: 'tnpm',
           short: 'tnpm',
