@@ -9,7 +9,6 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
-const CompleteConsole = require('complete-console');
 const OpenBrowserPlugin = require('open-browser-webpack-plugin')
 
 
@@ -82,7 +81,8 @@ module.exports = new Promise((resolve, reject) => {
       process.env.PORT = port
       // add port to devServer config
       devWebpackConfig.devServer.port = port
-      const url = `http://dev.taobao.com:${port}`;
+      const url = `http://test.open-iot.tmall.com:${port}`;
+      const listUrl = `https://ailabs-iot.aligenie.com/daily/pre/1545/1.0.35/dist/index.html#/?debugUrl=${url}`;
       // Add FriendlyErrorsPlugin
       devWebpackConfig.plugins.push(new FriendlyErrorsPlugin({
         compilationSuccessInfo: {
@@ -95,8 +95,7 @@ module.exports = new Promise((resolve, reject) => {
           : undefined,
         clearConsole: false
       }))
-      devWebpackConfig.plugins.push(new CompleteConsole({ url }))
-      devWebpackConfig.plugins.push(new OpenBrowserPlugin({ url }))
+      devWebpackConfig.plugins.push(new OpenBrowserPlugin({ url: listUrl }))
 
       resolve(devWebpackConfig)
     }
