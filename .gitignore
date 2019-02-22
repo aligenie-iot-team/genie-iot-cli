@@ -31,3 +31,4 @@ node_modules
 
 *.map
 *.debug
+.DS_Store
