@@ -82,7 +82,7 @@ module.exports = new Promise((resolve, reject) => {
       // add port to devServer config
       devWebpackConfig.devServer.port = port
       const url = `http://test.open-iot.tmall.com:${port}`;
-      const listUrl = `https://ailabs-iot.aligenie.com/daily/pre/1545/1.0.39/dist/index.html#/?debugUrl=${url}`;
+      const listUrl = `https://ailabs-iot.aligenie.com/daily/pre/1545/1.0.39/dist/index.html#/?debugUrl=${encodeURIComponent(url)}`;
       // Add FriendlyErrorsPlugin
       devWebpackConfig.plugins.push(new FriendlyErrorsPlugin({
         compilationSuccessInfo: {
