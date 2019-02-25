@@ -5,7 +5,6 @@ import App from './App'
 import router from './router'
 import store from './store'
 import deviceConfig from './device-config'
-import './device-base'
 
 Vue.use(Vuex)
 Vue.config.productionTip = false
