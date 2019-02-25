@@ -5,7 +5,7 @@ export default {
   base: {
     env: 'dev',
     platform: 'genie',
-    icon: ['//at.alicdn.com/t/font_358977_9akbhb29n8k.js'],
+    icon: [],
     pollingInterval: 5000,
     deviceInfo: {
       title: '设备名称'
