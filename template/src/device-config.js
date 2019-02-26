@@ -6,7 +6,7 @@ export default {
     env: 'dev',
     platform: 'genie',
     icon: [],
-    pollingInterval: 5000,
+    pollingInterval: 3000,
     deviceInfo: {
       title: '设备名称'
     }
@@ -16,6 +16,6 @@ export default {
       productKey: '',
       devId: ''
     },
-    stagingMap: 'pre2', // pre2 预发环境  'release' 为线上环境
+    stagingMap: 'release', // pre2 预发环境  'release' 为线上环境
   }
 }

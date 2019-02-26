@@ -58,6 +58,7 @@ export default {
     next(vm => {
       AI.setNavbar({
         title: vm.title, // device-config 配置的 deviceInfo.title  也可以手动设置
+        color: 'ffffff',
         // right: [{
         //   type: 'image',
         //   eventFunc: () => {
@@ -98,7 +99,7 @@ export default {
       });
     },
 
-    control() {
+    control(key, value) {
       if (this.onlinestate !== '在线') {
         return;
       }
