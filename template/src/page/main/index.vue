@@ -71,7 +71,6 @@ export default {
     setNavbar() {
       AI.setNavbar({
         title: this.title, // device-config 配置的 deviceInfo.title  也可以手动设置
-        color: 'ffffff',
         right: [{
           type: 'image',
           eventFunc: () => {
