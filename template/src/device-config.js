@@ -3,12 +3,12 @@
  */
 export default {
   base: {
-    env: 'dev',
+    // env: 'dev',
     platform: 'genie',
     icon: [],
     pollingInterval: 3000,
     deviceInfo: {
-      title: '设备名称'
+      title: '设备名称2'
     }
   },
   debug: {

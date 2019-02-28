@@ -27,7 +27,8 @@ export default {
   },
   data() {
     return {
-      img: 'http://img.alicdn.com/tfs/TB1ctXOBbvpK1RjSZPiXXbmwXXa-800-800.jpg'
+      title: '设备名称',
+      img: 'https://img.alicdn.com/tfs/TB1B3GmJkvoK1RjSZPfXXXPKFXa-104-104.png'
     };
   },
   computed: {
@@ -35,10 +36,6 @@ export default {
       // 设备status
       deviceStatus: state => {
         return state.publicInfo.attr;
-      },
-
-      title: state => {
-        return state.base.deviceInfo.title;
       },
 
       // 在线状态
@@ -54,30 +51,11 @@ export default {
       }
     })
   },
-  beforeRouteEnter(to, from, next) {
-    next(vm => {
-      AI.setNavbar({
-        title: vm.title, // device-config 配置的 deviceInfo.title  也可以手动设置
-        color: 'ffffff',
-        // right: [{
-        //   type: 'image',
-        //   eventFunc: () => {
-        //     alert('you clicked on me !')
-        //   },
-        //   content: 'https://img.alicdn.com/tfs/TB1yOtHB9zqK1RjSZFLXXcn2XXa-40-40.png'
-        // }, {
-        //   type: 'text',
-        //   eventFunc: () => {
-        //     alert('you clicked on me !')
-        //   },
-        //   content: '好的'
-        // }]
-      })
-    });
-  },
   created() {
     console.log('this.$route.query：', this.$route.query);
     this.$nextTick(() => {
+      this.setNavbar(); // 设置topbar
+
       // 兼听页面改变
       AI.listenPageChange({
         Background: () => { }, // 页面离开
@@ -87,16 +65,21 @@ export default {
   },
   beforeDestroy() {
     AI.allListenRemove(); // 页面兼听事件取消
-
-    document.removeEventListener('tapRightItem', this.tapRightItem);
   },
   methods: {
-
-    tapRightItem() {
-      // 前往设置页面
-      AI.goWeexSetPage({
-        pre: '2'
-      });
+    // 设置topbar
+    setNavbar() {
+      AI.setNavbar({
+        title: this.title, // device-config 配置的 deviceInfo.title  也可以手动设置
+        color: 'ffffff',
+        right: [{
+          type: 'image',
+          eventFunc: () => {
+            alert('you clicked on me !')
+          },
+          content: 'https://img.alicdn.com/tfs/TB1yOtHB9zqK1RjSZFLXXcn2XXa-40-40.png'
+        }]
+      })
     },
 
     control(key, value) {
