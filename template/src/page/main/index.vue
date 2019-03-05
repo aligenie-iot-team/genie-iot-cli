@@ -47,7 +47,7 @@ export default {
       // 开关状态
       powerstate: state => {
         const powerstate = state.publicInfo.attr.powerstate;
-        return powerstate === 'on';
+        return powerstate === 1;
       }
     })
   },
@@ -86,7 +86,7 @@ export default {
         return;
       }
       this.$store.dispatch('setDeviceStatus', {
-        powerstate: this.powerstate ? 'off' : 'on'
+        powerstate: this.powerstate ? 0 : 1
       });
     }
   }

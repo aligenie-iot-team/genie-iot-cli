@@ -16,6 +16,6 @@ export default {
       productKey: '',
       devId: ''
     },
-    stagingMap: 'release', // pre2 预发环境  'release' 为线上环境
+    stagingMap: 'pre2', // pre2 预发环境  'release' 为线上环境
   }
 }
