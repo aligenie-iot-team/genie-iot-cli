@@ -5,7 +5,7 @@
       <h5 class="title">\{{title}}</h5>
     </div>
 
-    <div class="switch" @click="control">
+    <div class="switch">
       <h5>设备状态</h5>
       <span>\{{onlinestate}}</span>
     </div>
@@ -48,8 +48,9 @@ export default {
       powerstate: state => {
         const powerstate = state.publicInfo.attr.powerstate;
         return powerstate === 1;
-      }
-    })
+      },
+
+    }),
   },
   created() {
     console.log('this.$route.query：', this.$route.query);
@@ -74,7 +75,7 @@ export default {
         right: [{
           type: 'image',
           eventFunc: () => {
-            alert('you clicked on me !')
+            console.log('clicked on me');
           },
           content: 'https://img.alicdn.com/tfs/TB1yOtHB9zqK1RjSZFLXXcn2XXa-40-40.png'
         }]

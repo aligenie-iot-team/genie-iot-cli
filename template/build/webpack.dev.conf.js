@@ -31,6 +31,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
         { from: /.*/, to: path.posix.join(config.dev.assetsPublicPath, 'index.html') },
       ],
     },
+    // inline: false,
     hot: true,
     contentBase: false, // since we use CopyWebpackPlugin.
     compress: true,
@@ -82,7 +83,7 @@ module.exports = new Promise((resolve, reject) => {
       // add port to devServer config
       devWebpackConfig.devServer.port = port
       const url = `http://test.open-iot.tmall.com:${port}`;
-      const listUrl = `https://ailabs-iot.aligenie.com/daily/pre/1545/1.0.47/dist/index.html#/?debugUrl=${url}`;
+      const listUrl = `https://ailabs-iot.aligenie.com/1545/1.0.54/dist/index.html#/?debugUrl=${url}`;
       // Add FriendlyErrorsPlugin
       devWebpackConfig.plugins.push(new FriendlyErrorsPlugin({
         compilationSuccessInfo: {
