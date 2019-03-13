@@ -72,13 +72,13 @@ export default {
     setNavbar() {
       AI.setNavbar({
         title: this.title, // device-config 配置的 deviceInfo.title  也可以手动设置
-        right: [{
-          type: 'image',
-          eventFunc: () => {
-            console.log('clicked on me');
-          },
-          content: 'https://img.alicdn.com/tfs/TB1yOtHB9zqK1RjSZFLXXcn2XXa-40-40.png'
-        }]
+        // right: [{
+        //   type: 'image',
+        //   eventFunc: () => {
+        //     console.log('clicked on me');
+        //   },
+        //   content: 'https://img.alicdn.com/tfs/TB1yOtHB9zqK1RjSZFLXXcn2XXa-40-40.png'
+        // }]
       })
     },
 
