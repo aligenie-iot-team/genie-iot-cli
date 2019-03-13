@@ -1,15 +1,27 @@
 <template>
-  <div id="appView">
+  <div id="appview">
+    <iot-header :data='navBarData'></iot-header>
     <router-view/>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex';
+import { IotHeader } from 'genie-ui';
+
 export default {
   name: 'App',
+  components: {
+    IotHeader
+  },
   created: function () {
     this.$store.dispatch('deviceStatusPolling')
-  }
+  },
+  computed: {
+    ...mapState({
+      navBarData: state => state.base.navBarData
+    })
+  },
 }
 </script>
 
