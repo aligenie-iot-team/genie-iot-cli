@@ -83,21 +83,36 @@ module.exports = new Promise((resolve, reject) => {
       // add port to devServer config
       devWebpackConfig.devServer.port = port
       const url = `http://test.open-iot.tmall.com:${port}`;
+      {{#if_eq business "iot"}}
       const listUrl = `https://ailabs-iot.aligenie.com/1545/1.0.54/dist/index.html#/?debugUrl=${url}`;
+      {{/if_eq}}
+      {{#if_eq business "iot"}}
+      const messages = [
+        `listUrl is running here: ${listUrl}`,
+        `Your application is running here: ${url}`,
+      ];
+      {{/if_eq}}
+      {{#if_eq business "other"}}
+      const messages = [
+        `Your application is running here: ${url}`,
+      ];
+      {{/if_eq}}
       // Add FriendlyErrorsPlugin
       devWebpackConfig.plugins.push(new FriendlyErrorsPlugin({
         compilationSuccessInfo: {
-          messages: [
-            `listUrl is running here: ${listUrl}`,
-            `Your application is running here: ${url}`,
-          ],
+          messages,
         },
         onErrors: config.dev.notifyOnErrors
           ? utils.createNotifierCallback()
           : undefined,
         clearConsole: false
       }))
+      {{#if_eq business "iot"}}
       devWebpackConfig.plugins.push(new OpenBrowserPlugin({ url: listUrl }))
+      {{/if_eq}}
+      {{#if_eq business "other"}}
+      devWebpackConfig.plugins.push(new OpenBrowserPlugin({ url }))
+      {{/if_eq}}
 
       resolve(devWebpackConfig)
     }

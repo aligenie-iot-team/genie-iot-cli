@@ -51,6 +51,23 @@ module.exports = {
       type: 'string',
       message: 'Author',
     },
+    business: {
+      when: 'isNotTest',
+      type: 'list',
+      message: '选择业务类型',
+      choices: [
+        {
+          name: 'iot业务',
+          value: 'iot',
+          short: 'iot',
+        },
+        {
+          name: '非iot业务',
+          value: 'other',
+          short: 'other',
+        },
+      ],
+    },
     autoInstall: {
       when: 'isNotTest',
       type: 'list',
