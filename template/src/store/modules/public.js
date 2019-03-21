@@ -44,7 +44,12 @@ export default {
      * 设置设备属性
      * @param {*} attrs 需要设置的属性集合
      */
-    setDeviceStatus({ commit }, attrs) {
+    setDeviceStatus({ state, commit }, attrs) {
+      if (state.attr.onlinestate !== 'online') {
+        console.error('**设备不在线 无法操控**')
+        return;
+      }
+
       // 更新数据
       commit('updateDeviceStatus', { data: {
         attr: attrs

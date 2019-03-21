@@ -1,29 +1,29 @@
 <template>
   <div class="main">
+    <!-- 设备信息 -->
     <div class="deviceInfo">
       <img :src="img">
       <h5 class="title">\{{title}}</h5>
     </div>
 
-    <div class="switch">
-      <h5>设备状态</h5>
-      <span>\{{onlinestate}}</span>
-    </div>
-    <div class="switch" @click="control">
-      <h5>开关状态</h5>
-      <switch-button :value="powerstate"></switch-button>
-    </div>
+    <!-- 设备状态 -->
+    <push-bar
+      v-for="(val, key) in deviceStatus" v-bind:key="key"
+      :data="val" :type="val.type"
+      :check="val.check"
+    >
+    </push-bar>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
 import { mapState } from 'vuex';
-import { SwitchButton } from 'genie-ui';
+import { PushBar } from 'genie-ui';
 
 export default {
   name: 'Main',
   components: {
-    SwitchButton
+    PushBar
   },
   data() {
     return {
@@ -34,8 +34,24 @@ export default {
   computed: {
     ...mapState({
       // 设备status
-      deviceStatus: state => {
-        return state.publicInfo.attr;
+      deviceStatus(state) {
+        const attr = state.publicInfo.attr;
+        const onlinestate = attr.onlinestate === 'online' ? '在线' : '离线';
+        const powerstate = attr.powerstate === 1;
+        return [{
+          text: '设备状态',
+          descColor: '#4a4a4a',
+          desc: onlinestate
+        }, {
+          check: powerstate,
+          text: '开关状态',
+          type: 'switch',
+          clickBack: (val) => {
+            this.$store.dispatch('setDeviceStatus', {
+              powerstate: val.check ? 0 : 1
+            });
+          }
+        }]
       },
 
       // 在线状态
@@ -49,7 +65,6 @@ export default {
         const powerstate = state.publicInfo.attr.powerstate;
         return powerstate === 1;
       },
-
     }),
   },
   created() {
@@ -72,24 +87,8 @@ export default {
     setNavbar() {
       AI.setNavbar({
         title: this.title, // device-config 配置的 deviceInfo.title  也可以手动设置
-        // right: [{
-        //   type: 'image',
-        //   eventFunc: () => {
-        //     console.log('clicked on me');
-        //   },
-        //   content: 'https://img.alicdn.com/tfs/TB1yOtHB9zqK1RjSZFLXXcn2XXa-40-40.png'
-        // }]
       })
     },
-
-    control(key, value) {
-      if (this.onlinestate !== '在线') {
-        return;
-      }
-      this.$store.dispatch('setDeviceStatus', {
-        powerstate: this.powerstate ? 0 : 1
-      });
-    }
   }
 };
 </script>
@@ -111,20 +110,6 @@ export default {
     color: #4a4a4a;
     font-weight: bold;
     padding-top: 5px;
-  }
-}
-
-.switch {
-  display: flex;
-  height: 50px;
-  padding: 0 10px;
-  box-shadow: 0 0 5px #eee;
-  background-color: #fff;
-  align-items: center;
-  justify-content: space-between;
-  h5 {
-    color: #4a4a4a;
-    font-size: 14px;
   }
 }
 </style>
