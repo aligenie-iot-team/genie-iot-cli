@@ -3,7 +3,6 @@ export default {
     env: 'dev',
     platform: 'genie',
     icon: [],
-    pollingInterval: 3000,
     deviceInfo: {}
   },
   debug: {
