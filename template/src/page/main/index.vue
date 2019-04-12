@@ -3,7 +3,7 @@
     <!-- 设备信息 -->
     <div class="deviceInfo">
       <img :src="productInfo.img">
-      <h5 class="title">{{\productInfo.title}}</h5>
+      <h5 class="title">\{{productInfo.title}}</h5>
     </div>
 
     <!-- 设备状态 -->
