@@ -2,8 +2,8 @@
   <div class="main">
     <!-- 设备信息 -->
     <div class="deviceInfo">
-      <img :src="img">
-      <h5 class="title">{{title}}</h5>
+      <img :src="productInfo.img">
+      <h5 class="title">{{\productInfo.title}}</h5>
     </div>
 
     <!-- 设备状态 -->
@@ -33,6 +33,11 @@ export default {
   },
   computed: {
     ...mapState({
+      // 产品信息详情
+      productInfo: state => {
+        return state.base.productInfo;
+      },
+
       // 设备status
       deviceStatus(state) {
         const attr = state.publicInfo.attr;
@@ -71,12 +76,6 @@ export default {
     console.log('this.$route.query：', this.$route.query);
     this.$nextTick(() => {
       this.setNavbar(); // 设置topbar
-
-      // 兼听页面改变
-      // AI.listenPageChange({
-      //   Background: () => { }, // 页面离开
-      //   Active: () => { }, // 页面显示
-      // });
     });
   },
   beforeDestroy() {
@@ -86,7 +85,7 @@ export default {
     // 设置topbar
     setNavbar() {
       AI.setNavbar({
-        title: this.title, // device-config 配置的 deviceInfo.title  也可以手动设置
+        title: this.productInfo.title,
       })
     },
   }
