@@ -26,10 +26,7 @@ export default {
     PushBar
   },
   data() {
-    return {
-      img: 'https://img.alicdn.com/tfs/TB1B3GmJkvoK1RjSZPfXXXPKFXa-104-104.png',
-      title: '设备名称'
-    };
+    return {};
   },
   computed: {
     ...mapState({
@@ -42,18 +39,18 @@ export default {
       deviceStatus(state) {
         const attr = state.publicInfo.attr;
         const onlinestate = attr.onlinestate === 'online' ? '在线' : '离线';
-        const ultravioletOnOff = attr.ultravioletOnOff === 1;
+        const powerstate = attr.powerstate === 1;
         return [{
           text: '设备状态',
           descColor: '#4a4a4a',
           desc: onlinestate
         }, {
-          check: ultravioletOnOff,
+          check: powerstate,
           text: '开关状态',
           type: 'switch',
           clickBack: (val) => {
             this.$store.dispatch('setDeviceStatus', {
-              ultravioletOnOff: val.check ? 0 : 1
+              powerstate: val.check ? 0 : 1
             });
           }
         }]
