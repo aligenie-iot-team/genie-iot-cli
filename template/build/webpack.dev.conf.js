@@ -84,7 +84,7 @@ module.exports = new Promise((resolve, reject) => {
       devWebpackConfig.devServer.port = port
       const url = `http://test.open-iot.tmall.com:${port}`;
       {{#if_eq business "iot"}}
-      const listUrl = `https://ailabs-iot.aligenie.com/2364/1.0.3/dist/index.html#/?debugUrl=${url}`;
+      const listUrl = `https://ailabs-iot.aligenie.com/2364/1.0.11/dist/index.html#/?debugUrl=${url}`;
       {{/if_eq}}
       {{#if_eq business "iot"}}
       const messages = [
